@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inventario</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="barra">
+    <h1>Inventario</h1>
+    <p id="resumen" class="resumen" aria-live="polite"></p>
+  </header>
+
+  <main class="layout">
+    <section class="panel" aria-labelledby="titulo-form">
+      <h2 id="titulo-form">Nuevo producto</h2>
+      <form id="form-producto" novalidate>
+        <input type="hidden" id="id_producto">
+
+        <label for="nombre">Nombre</label>
+        <input id="nombre" name="nombre" maxlength="100" required>
+        <small class="error" data-for="nombre"></small>
+
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" name="descripcion" rows="3"></textarea>
+
+        <div class="fila">
+          <div>
+            <label for="precio">Precio (COP)</label>
+            <input id="precio" name="precio" type="number" min="0" step="0.01" required>
+            <small class="error" data-for="precio"></small>
+          </div>
+          <div>
+            <label for="cantidad_stock">Stock</label>
+            <input id="cantidad_stock" name="cantidad_stock" type="number" min="0" step="1" required>
+            <small class="error" data-for="cantidad_stock"></small>
+          </div>
+        </div>
+
+        <div class="acciones">
+          <button type="submit" id="btn-guardar" class="primario">Registrar producto</button>
+          <button type="button" id="btn-cancelar" class="secundario" hidden>Cancelar edición</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel" aria-labelledby="titulo-lista">
+      <div class="encabezado-lista">
+        <h2 id="titulo-lista">Productos</h2>
+        <input id="buscar" type="search" placeholder="Buscar por nombre o descripción" aria-label="Buscar productos">
+      </div>
+      <div class="tabla-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th><th>Producto</th><th class="num">Precio</th>
+              <th class="num">Stock</th><th>Registro</th><th><span class="sr">Acciones</span></th>
+            </tr>
+          </thead>
+          <tbody id="tabla-productos"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div id="aviso" class="aviso" role="status" aria-live="polite" hidden></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
